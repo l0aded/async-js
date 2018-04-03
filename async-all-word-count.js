@@ -67,4 +67,24 @@ const countWords = function(paragraph) {
 // countAllWords('./input.txt', './output.txt') --> should output a .txt file in same directory
 var countAllWords = function(inputFile, outputFile) {
   /* WRITE CODE HERE */ 
+  let encoding = 'utf8';
+  var counter;
+  fs.readFile(inputFile, encoding, function(err, data) {
+    let obj = countWords(data);
+    for (var key in obj) {
+      console.log(obj[key])
+      counter += obj[key];
+    }
+    // console.log(counter)
+    fs.writeFile(outputFile, counter, function(err, data) {
+      console.log('data was written: ', data)
+    })
+  })
 }
+
+
+countAllWords('./input.txt', './output.txt');
+
+
+
+
